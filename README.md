@@ -38,7 +38,7 @@ You can install these packages using pip. Refer to the `requirements.txt` file f
 1. **Clone the repository** (if applicable):
 
    ```bash
-   git clone https://github.com/yourusername/facebook-poke-back.git
+   git clone https://github.com/NightDev19/facebook-poke-back.git
    cd facebook-poke-back
    ```
 
