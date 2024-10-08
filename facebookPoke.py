@@ -48,6 +48,7 @@ try:
     # Open Facebook login page
     driver.get('https://www.facebook.com/')
     WebDriverWait(driver, 20).until(EC.title_contains('Facebook'))
+    
 
     # Perform login
     WebDriverWait(driver, 10).until(
@@ -55,11 +56,12 @@ try:
     driver.find_element(By.ID, 'pass').send_keys(FB_PASS)
     driver.find_element(By.NAME, 'login').click()
     WebDriverWait(driver, 20).until(EC.url_contains('facebook.com'))
-
     print(Fore.GREEN + 'Logged in. Navigating to Pokes page...')
+    
 
     # Navigate to the Pokes page
     driver.get('https://www.facebook.com/pokes')
+    print(Fore.GREEN + 'Opening Pokes page...')
     WebDriverWait(driver, 20).until(EC.title_contains('Pokes'))
 
     while True:
