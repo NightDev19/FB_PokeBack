@@ -1,6 +1,7 @@
 import time
 import os
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
@@ -27,8 +28,8 @@ chrome_options.add_argument("--disable-notifications")
 chrome_options.add_argument("--user-agent=Mozilla/5.0")
 
 # Set the path to the ChromeDriver executable
-webdriver_service = Service('./driver/chromedriver.exe')
-driver = webdriver.Chrome(service=webdriver_service, options=chrome_options)
+driver = webdriver.Chrome(service=Service(
+    ChromeDriverManager().install()), options=chrome_options)
 
 
 def delay(seconds):
@@ -48,7 +49,6 @@ try:
     # Open Facebook login page
     driver.get('https://www.facebook.com/')
     WebDriverWait(driver, 20).until(EC.title_contains('Facebook'))
-    
 
     # Perform login
     WebDriverWait(driver, 10).until(
@@ -57,7 +57,6 @@ try:
     driver.find_element(By.NAME, 'login').click()
     WebDriverWait(driver, 20).until(EC.url_contains('facebook.com'))
     print(Fore.GREEN + 'Logged in. Navigating to Pokes page...')
-    
 
     # Navigate to the Pokes page
     driver.get('https://www.facebook.com/pokes')
@@ -94,7 +93,7 @@ try:
             print(Fore.YELLOW + 'Rechecking for users to poke back...')
 
         except Exception as e:
-            print(Fore.RED + 'No User to Poke Back!' )
+            print(Fore.RED + 'No User to Poke Back!')
             delay(0.5)
             continue
 
